@@ -18,7 +18,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="navbar-center flex">
-        <ul className="menu menu-horizontal">
+        <ul className="menu menu-horizontal px-1">
           {links.map((link, index) => (
             <li key={index}>
               <Link
