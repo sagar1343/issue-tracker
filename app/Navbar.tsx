@@ -14,7 +14,7 @@ export default function Navbar() {
     <nav className="navbar border-b bg-base-100">
       <div className="navbar-start">
         <Link href="/" className="btn btn-ghost text-xl">
-          <FaBug />
+          <FaBug color="black" />
         </Link>
       </div>
       <div className="navbar-center flex">
