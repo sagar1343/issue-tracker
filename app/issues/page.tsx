@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import prisma from "@/prisma/client";
+import IssuesBadge from "../components/IssuesBadge";
 
 async function IssuesPage() {
   const issues = await prisma.issue.findMany();
@@ -9,17 +10,21 @@ async function IssuesPage() {
       <Link href="issues/new" className="btn btn-primary">
         New Issue
       </Link>
-      <table className="table">
+      <table className="table table-md">
         <thead>
-          <th>Issue</th>
-          <th>Status</th>
-          <th className="hidden md:block">Created At</th>
+          <tr>
+            <th>Issue</th>
+            <th>Status</th>
+            <th className="hidden md:block">Created At</th>
+          </tr>
         </thead>
         <tbody>
           {issues.map((issues) => (
             <tr>
               <td>{issues.title}</td>
-              <td>{issues.status}</td>
+              <td>
+                <IssuesBadge status={issues.status} />
+              </td>
               <td className="hidden md:block">
                 {issues.createdAt.toLocaleString()}
               </td>
