@@ -19,14 +19,16 @@ async function IssuesPage() {
           </tr>
         </thead>
         <tbody>
-          {issues.map((issues) => (
-            <tr>
-              <td>{issues.title}</td>
+          {issues.map((issue) => (
+            <tr className="hover">
               <td>
-                <IssuesBadge status={issues.status} />
+                <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+              </td>
+              <td>
+                <IssuesBadge status={issue.status} />
               </td>
               <td className="hidden md:block">
-                {issues.createdAt.toLocaleString()}
+                {issue.createdAt.toLocaleString()}
               </td>
             </tr>
           ))}

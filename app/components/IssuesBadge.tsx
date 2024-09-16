@@ -12,7 +12,7 @@ const statusMap: Record<Status, { label: string; color: string }> = {
 };
 function IssuesBadge({ status }: Props): ReactElement {
   const { label, color } = statusMap[status];
-  return <div className={"badge " + color}>{label}</div>;
+  return <div className={"badge rounded-sm " + color}>{label}</div>;
 }
 
 export default IssuesBadge;
