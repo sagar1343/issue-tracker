@@ -6,14 +6,21 @@ import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { z } from "zod";
+import { createIssueSchema } from "@/app/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface IssueForm {
-  title: string;
-  description: string;
-}
+type IssueForm = z.infer<typeof createIssueSchema>;
 
 export default function NewIssuePage() {
-  const { register, control, handleSubmit } = useForm<IssueForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IssueForm>({
+    resolver: zodResolver(createIssueSchema),
+  });
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
 
@@ -59,6 +66,7 @@ export default function NewIssuePage() {
           className="input input-bordered w-full"
           {...register("title")}
         />
+        {errors.title && <p className="text-red-500">{errors.title.message}</p>}
         <Controller
           name="description"
           control={control}
@@ -70,6 +78,9 @@ export default function NewIssuePage() {
             />
           )}
         />
+        {errors.description && (
+          <p className="text-red-500">{errors.description.message}</p>
+        )}
         <button type="submit" className="btn btn-primary">
           Submit New Issue
         </button>
