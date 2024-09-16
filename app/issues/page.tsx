@@ -20,7 +20,7 @@ async function IssuesPage() {
         </thead>
         <tbody>
           {issues.map((issue) => (
-            <tr className="hover">
+            <tr key={issue.id} className="hover">
               <td>
                 <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
               </td>
