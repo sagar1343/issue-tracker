@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 export default function NewIssuePage() {
   return (
@@ -8,11 +11,11 @@ export default function NewIssuePage() {
         placeholder="Title"
         className="input input-bordered w-full"
       />
-      <textarea
+      <SimpleMDE
         className="textarea textarea-bordered w-full"
         placeholder="Description"
       />
-      <button className="btn text-white btn-primary">Submit New Issue</button>
+      <button className="btn btn-primary">Submit New Issue</button>
     </div>
   );
 }

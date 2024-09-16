@@ -27,3 +27,7 @@ body {
 main {
   padding: 2rem;
 }
+
+.btn {
+  color: white;
+}
