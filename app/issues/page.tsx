@@ -1,6 +1,5 @@
-import Link from "next/link";
-import React from "react";
 import prisma from "@/prisma/client";
+import Link from "next/link";
 import IssuesBadge from "../components/IssuesBadge";
 
 async function IssuesPage() {
@@ -22,13 +21,15 @@ async function IssuesPage() {
           {issues.map((issue) => (
             <tr key={issue.id} className="hover">
               <td>
-                <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
+                <Link href={`/issues/${issue.id}`} className="link link-primary">
+                  {issue.title}
+                </Link>
               </td>
               <td>
                 <IssuesBadge status={issue.status} />
               </td>
               <td className="hidden md:block">
-                {issue.createdAt.toLocaleString()}
+                {issue.createdAt.toDateString()}
               </td>
             </tr>
           ))}

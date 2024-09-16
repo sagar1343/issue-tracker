@@ -1,7 +1,7 @@
 import IssuesBadge from "@/app/components/IssuesBadge";
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import ReactMarkdown from "react-markdown";
 
 interface Props {
@@ -19,7 +19,7 @@ async function IssueDetailPage({
         <IssuesBadge status={issue.status} />
         <p>{issue.createdAt.toDateString()}</p>
       </div>
-      <div className="card prose">
+      <div className="card border-t-2 border-b-2 pb-3 prose">
         <ReactMarkdown>{issue.description}</ReactMarkdown>
       </div>
     </div>
