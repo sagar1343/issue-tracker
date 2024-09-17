@@ -30,12 +30,4 @@ main {
 
 .btn {
   color: white;
-  padding-inline: 2rem;
-}
-.badge {
-  border-radius: 4px;
-}
-
-.card {
-  border-top-color: 1px solid rgba(128, 128, 128, 0.487);
 }

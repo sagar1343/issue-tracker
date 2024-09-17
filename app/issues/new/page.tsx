@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/app/components/Button";
 import Spinner from "@/app/components/Spinner";
 import { createIssueSchema } from "@/app/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -85,14 +86,10 @@ export default function NewIssuePage() {
         {errors.description && (
           <p className="text-red-500">{errors.description.message}</p>
         )}
-        <button
-          disabled={isSubmitting}
-          type="submit"
-          className="btn btn-primary"
-        >
+        <Button disabled={isSubmitting} type="submit">
           Submit New Issue
           {isSubmitting && <Spinner />}
-        </button>
+        </Button>
       </form>
     </div>
   );

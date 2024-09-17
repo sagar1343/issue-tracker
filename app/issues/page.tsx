@@ -1,13 +1,14 @@
 import prisma from "@/prisma/client";
 import Link from "next/link";
 import IssuesBadge from "../components/IssuesBadge";
+import Button from "../components/Button";
 
 async function IssuesPage() {
   const issues = await prisma.issue.findMany();
   return (
     <div className="space-y-8">
-      <Link href="issues/new" className="btn btn-primary">
-        New Issue
+      <Link href="issues/new">
+        <Button>New Issue</Button>
       </Link>
       <table className="table table-md">
         <thead>
@@ -21,7 +22,10 @@ async function IssuesPage() {
           {issues.map((issue) => (
             <tr key={issue.id} className="hover">
               <td>
-                <Link href={`/issues/${issue.id}`} className="link link-primary">
+                <Link
+                  href={`/issues/${issue.id}`}
+                  className="link text-indigo-600 "
+                >
                   {issue.title}
                 </Link>
               </td>

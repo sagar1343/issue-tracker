@@ -12,6 +12,7 @@ async function IssueDetailPage({
 }: Props): Promise<ReactElement> {
   const issue = await prisma.issue.findUnique({ where: { id: parseInt(id) } });
   if (!issue) notFound();
+
   return (
     <div className="space-y-4">
       <h1 className="text-4xl font-semibold">{issue.title}</h1>
@@ -19,7 +20,7 @@ async function IssueDetailPage({
         <IssuesBadge status={issue.status} />
         <p>{issue.createdAt.toDateString()}</p>
       </div>
-      <div className="card border-t-2 border-b-2 pb-3 prose">
+      <div className="py-6 border pl-3 rounded-md prose">
         <ReactMarkdown>{issue.description}</ReactMarkdown>
       </div>
     </div>
