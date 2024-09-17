@@ -10,7 +10,7 @@ async function IssuesPage() {
       <Link href="issues/new">
         <Button className="w-auto">New Issue</Button>
       </Link>
-      <table className="table table-md">
+      <table className="table table-md border">
         <thead>
           <tr>
             <th>Issue</th>

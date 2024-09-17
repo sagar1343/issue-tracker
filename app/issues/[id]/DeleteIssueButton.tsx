@@ -3,12 +3,24 @@
 import Button from "@/app/components/Button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 
 async function DeleteIssueButton({ issueId }: { issueId: number }) {
   const router = useRouter();
   const modalRef = useRef<HTMLDialogElement | null>(null);
+  const [error, setError] = useState(false);
+
+  const deleteIssue = async () => {
+    try {
+      throw new Error();
+      await axios.delete("/api/issues/" + issueId);
+      router.push("/issues");
+    } catch (error) {
+      setError(true);
+    }
+  };
+
   return (
     <>
       <div onClick={() => modalRef.current?.showModal()}>
@@ -30,10 +42,7 @@ async function DeleteIssueButton({ issueId }: { issueId: number }) {
                 Close
               </Button>
               <Button
-                onClick={async () => {
-                  await axios.delete("/api/issues/" + issueId);
-                  router.push("/issues");
-                }}
+                onClick={deleteIssue}
                 className="py-1 bg-red-500 hover:bg-red-600"
               >
                 Confirm
@@ -42,6 +51,27 @@ async function DeleteIssueButton({ issueId }: { issueId: number }) {
           </div>
         </div>
       </dialog>
+      {error && (
+        <div className="toast toast-end">
+          <div className="alert">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="text-indigo-500 h-6 w-6 shrink-0"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+                strokeWidth="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <span>This issue could not be deleted.</span>
+          </div>
+        </div>
+      )}
     </>
   );
 }
