@@ -1,11 +1,13 @@
 "use client";
 
 import Button from "@/app/components/Button";
-import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { MdDelete } from "react-icons/md";
 
-function DeleteIssueButton() {
+async function DeleteIssueButton({ issueId }: { issueId: number }) {
+  const router = useRouter();
   const modalRef = useRef<HTMLDialogElement | null>(null);
   return (
     <>
@@ -27,11 +29,15 @@ function DeleteIssueButton() {
               <Button className="py-1 bg-gray-500 hover:bg-gray-600">
                 Close
               </Button>
-              <Link href="">
-                <Button className="py-1 bg-red-500 hover:bg-red-600">
-                  Confirm
-                </Button>
-              </Link>
+              <Button
+                onClick={async () => {
+                  await axios.delete("/api/issues/  " + issueId);
+                  router.push("/issues");
+                }}
+                className="py-1 bg-red-500 hover:bg-red-600"
+              >
+                Confirm
+              </Button>
             </form>
           </div>
         </div>

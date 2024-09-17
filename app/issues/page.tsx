@@ -8,7 +8,7 @@ async function IssuesPage() {
   return (
     <div className="space-y-8">
       <Link href="issues/new">
-        <Button>New Issue</Button>
+        <Button className="w-auto">New Issue</Button>
       </Link>
       <table className="table table-md">
         <thead>

@@ -8,6 +8,7 @@ import IssueDetails from "./IssueDetails";
 interface Props {
   params: { id: string };
 }
+
 async function IssueDetailPage({
   params: { id },
 }: Props): Promise<ReactElement> {
@@ -21,7 +22,7 @@ async function IssueDetailPage({
       </div>
       <div className="md:col-span-2 space-y-3">
         <EditIssueButton issueId={parseInt(id)} />
-        <DeleteIssueButton />
+        <DeleteIssueButton issueId={parseInt(id)} />
       </div>
     </div>
   );
