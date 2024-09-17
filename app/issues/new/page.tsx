@@ -1,4 +1,4 @@
-import IssueForm from "../components/IssueForm";
+import IssueForm from "../_components/IssueForm";
 
 function NewIssuePage() {
   return (
