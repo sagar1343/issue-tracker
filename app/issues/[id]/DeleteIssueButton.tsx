@@ -31,7 +31,7 @@ async function DeleteIssueButton({ issueId }: { issueId: number }) {
               </Button>
               <Button
                 onClick={async () => {
-                  await axios.delete("/api/issues/  " + issueId);
+                  await axios.delete("/api/issues/" + issueId);
                   router.push("/issues");
                 }}
                 className="py-1 bg-red-500 hover:bg-red-600"
