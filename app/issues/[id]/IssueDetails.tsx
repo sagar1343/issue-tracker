@@ -10,7 +10,7 @@ function IssueDetails({ issue }: { issue: Issue }) {
         <IssuesBadge status={issue.status} />
         <p>{issue.createdAt.toDateString()}</p>
       </div>
-      <div className="py-6 border pl-3 rounded-md prose">
+      <div className="py-6 border pl-3 rounded-md prose max-w-full">
         <ReactMarkdown>{issue.description}</ReactMarkdown>
       </div>
     </div>

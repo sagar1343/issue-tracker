@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import { notFound } from "next/navigation";
 import { ReactElement } from "react";
+import DeleteIssueButton from "./DeleteIssueButton";
 import EditIssueButton from "./EditIssueButton";
 import IssueDetails from "./IssueDetails";
 
@@ -14,10 +15,13 @@ async function IssueDetailPage({
   if (!issue) notFound();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2  items-start gap-4">
-      <IssueDetails issue={issue} />
-      <div className="justify-self-start">
+    <div className="grid grid-cols-1 md:grid-cols-7 gap-10">
+      <div className="md:col-span-5">
+        <IssueDetails issue={issue} />
+      </div>
+      <div className="md:col-span-2 space-y-3">
         <EditIssueButton issueId={parseInt(id)} />
+        <DeleteIssueButton />
       </div>
     </div>
   );
