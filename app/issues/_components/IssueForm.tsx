@@ -34,6 +34,7 @@ export default function IssueForm({ issue }: { issue?: Issue }) {
       if (issue) await axios.patch("/api/issues/" + issue.id, data);
       else await axios.post("/api/issues/", data);
       router.push("/issues");
+      router.refresh();
     } catch (err) {
       setSubmitting(false);
       setError("Failed to submit the issue. Please try again.");
