@@ -10,21 +10,28 @@ async function DeleteIssueButton({ issueId }: { issueId: number }) {
   const router = useRouter();
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const [error, setError] = useState(false);
+  const [isDeleting, setDeleting] = useState(false);
 
   const deleteIssue = async () => {
     try {
+      setDeleting(true);
       await axios.delete("/api/issues/" + issueId);
       router.push("/issues");
       router.refresh();
     } catch (error) {
+      setDeleting(false);
       setError(true);
     }
   };
 
   return (
     <>
-      <div onClick={() => modalRef.current?.showModal()}>
-        <Button className="bg-red-500 hover:bg-red-600">
+      <div>
+        <Button
+          disabled={isDeleting}
+          onClick={() => modalRef.current?.showModal()}
+          className="bg-red-500 hover:bg-red-600"
+        >
           <MdDelete />
           Delete Issue
         </Button>
