@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ function Button({ children, disabled, type }: Props): React.JSX.Element {
     <button
       disabled={disabled}
       type={type}
-      className="px-5 py-3 text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-700 active:shadow-lg"
+      className="inline-flex items-center gap-2 px-5 py-2 text-white duration-150 bg-indigo-600 rounded-md hover:bg-indigo-700 active:shadow-lg"
     >
       {children}
     </button>
