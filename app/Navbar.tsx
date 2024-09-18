@@ -48,6 +48,7 @@ function AuthStatus() {
   const { status, data: session } = useSession();
   return (
     <>
+      {status == "loading" && <span className="skeleton h-4 w-12" />}
       {status === "unauthenticated" && (
         <Link
           className="font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
