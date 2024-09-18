@@ -1,4 +1,6 @@
+import authOptions from "@/app/auth/authOptions";
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import { ReactElement } from "react";
 import DeleteIssueButton from "./DeleteIssueButton";
@@ -9,10 +11,11 @@ interface Props {
   params: { id: string };
 }
 
-async function IssueDetailPage({
-  params: { id },
-}: Props): Promise<ReactElement> {
-  const issue = await prisma.issue.findUnique({ where: { id: parseInt(id) } });
+async function IssueDetailPage({ params }: Props): Promise<ReactElement> {
+  const session = await getServerSession(authOptions);
+  const issue = await prisma.issue.findUnique({
+    where: { id: parseInt(params.id) },
+  });
   if (!issue) notFound();
 
   return (
@@ -20,10 +23,12 @@ async function IssueDetailPage({
       <div className="md:col-span-5">
         <IssueDetails issue={issue} />
       </div>
-      <div className="md:col-span-2 space-y-3">
-        <EditIssueButton issueId={parseInt(id)} />
-        <DeleteIssueButton issueId={parseInt(id)} />
-      </div>
+      {session && (
+        <div className="md:col-span-2 space-y-3">
+          <EditIssueButton issueId={parseInt(params.id)} />
+          <DeleteIssueButton issueId={parseInt(params.id)} />
+        </div>
+      )}
     </div>
   );
 }

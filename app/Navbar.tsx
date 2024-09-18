@@ -52,7 +52,7 @@ function AuthStatus() {
       {status === "unauthenticated" && (
         <Link
           className="font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
-          href="api/auth/signin"
+          href="/api/auth/signin"
         >
           Login
         </Link>
@@ -87,7 +87,7 @@ function AuthStatus() {
             <li>
               <Link
                 className="hover:bg-indigo-600 hover:text-white"
-                href="api/auth/signout"
+                href="/api/auth/signout"
               >
                 Logout
               </Link>

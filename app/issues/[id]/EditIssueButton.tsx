@@ -4,7 +4,7 @@ import { GoPencil } from "react-icons/go";
 
 function EditIssueButton({ issueId }: { issueId: number }) {
   return (
-    <Link href={`/issues/${issueId}/edit`}>
+    <Link href={"/issues/edit/" + issueId}>
       <Button>
         <GoPencil />
         Edit Issue
