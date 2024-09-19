@@ -65,14 +65,16 @@ function AuthStatus() {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <Image
-                src={session.user?.image!}
-                width={25}
-                height={25}
-                alt="user-image"
-                referrerPolicy="no-referrer"
-                fetchPriority="high"
-              />
+              {session.user && (
+                <Image
+                  src={session.user.image!}
+                  width={25}
+                  height={25}
+                  alt="user-image"
+                  referrerPolicy="no-referrer"
+                  fetchPriority="high"
+                />
+              )}
             </div>
           </div>
           <ul
