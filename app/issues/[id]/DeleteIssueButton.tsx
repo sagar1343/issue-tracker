@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 
-async function DeleteIssueButton({ issueId }: { issueId: number }) {
+function DeleteIssueButton({ issueId }: { issueId: number }) {
   const router = useRouter();
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const [error, setError] = useState(false);

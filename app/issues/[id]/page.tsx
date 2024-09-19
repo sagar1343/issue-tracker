@@ -6,6 +6,7 @@ import { ReactElement } from "react";
 import DeleteIssueButton from "./DeleteIssueButton";
 import EditIssueButton from "./EditIssueButton";
 import IssueDetails from "./IssueDetails";
+import AssigneeSelect from "./AssigneeSelect";
 
 interface Props {
   params: { id: string };
@@ -24,7 +25,8 @@ async function IssueDetailPage({ params }: Props): Promise<ReactElement> {
         <IssueDetails issue={issue} />
       </div>
       {session && (
-        <div className="md:col-span-2 space-y-3">
+        <div className="md:col-span-2 flex flex-col gap-4">
+          <AssigneeSelect />
           <EditIssueButton issueId={parseInt(params.id)} />
           <DeleteIssueButton issueId={parseInt(params.id)} />
         </div>
