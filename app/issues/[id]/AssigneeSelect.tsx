@@ -1,5 +1,4 @@
 import prisma from "@/prisma/client";
-import React, { use } from "react";
 
 async function AssigneeSelect() {
   const users = await prisma.user.findMany({ orderBy: { name: "asc" } });
@@ -13,7 +12,9 @@ async function AssigneeSelect() {
           Assignee...
         </option>
         {users.map((user) => (
-          <option value={user.id}>{user.email}</option>
+          <option key={user.id} value={user.id}>
+            {user.email}
+          </option>
         ))}
       </select>
     </div>
