@@ -23,7 +23,7 @@ function AssigneeSelect({ issue }: { issue: Issue }) {
     <div>
       <select
         defaultValue={issue.assignedToUserId || ""}
-        className="select focus:outline-offset-0 focus:outline-indigo-600 border-2 rounded-md text-indigo-600 border-indigo-600 w-full"
+        className="select text-zinc-500 select-bordered focus:outline-none rounded-md w-full"
         onChange={(event) => assignValue(event.target.value)}
       >
         <option disabled value="suggestions">

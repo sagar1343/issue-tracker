@@ -1,15 +1,13 @@
 import prisma from "@/prisma/client";
 import Link from "next/link";
 import IssuesBadge from "../components/IssuesBadge";
-import Button from "../components/Button";
+import IssuesAction from "./IssuesAction";
 
 async function IssuesPage() {
   const issues = await prisma.issue.findMany();
   return (
     <div className="space-y-8">
-      <Link href="issues/new">
-        <Button className="w-auto">New Issue</Button>
-      </Link>
+      <IssuesAction />
       <table className="table table-md border">
         <thead>
           <tr>
