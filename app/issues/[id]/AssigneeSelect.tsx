@@ -1,21 +1,19 @@
 "use client";
 
-import toast, { Toaster } from "react-hot-toast";
 import { Issue, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 function AssigneeSelect({ issue }: { issue: Issue }) {
   const { data: users, isLoading, error } = useUsers();
 
-  const assignValue = async (userId: string) => {
-    try {
-      await axios.patch("/api/issues/" + issue.id, {
+  const assignValue = (userId: string) => {
+    axios
+      .patch("/api/issues/" + issue.id, {
         assignedToUserId: userId || null,
-      });
-    } catch (error) {
-      toast.error("Changes could not be saved.");
-    }
+      })
+      .catch(() => toast.error("Changes could not be saved."));
   };
 
   if (isLoading) return <div className="skeleton h-10" />;
@@ -47,7 +45,7 @@ const useUsers = () => {
   return useQuery<User[]>({
     queryKey: ["users"],
     queryFn: () => axios.get("/api/users").then((res) => res.data),
-    staleTime: 60 * 1000,
+    staleTime: 60 * 60 * 1000,
     retry: 3,
   });
 };
