@@ -26,7 +26,7 @@ async function IssueDetailPage({ params }: Props): Promise<ReactElement> {
       </div>
       {session && (
         <div className="md:col-span-2 flex flex-col gap-4">
-          <AssigneeSelect />
+          <AssigneeSelect issue={issue} />
           <EditIssueButton issueId={parseInt(params.id)} />
           <DeleteIssueButton issueId={parseInt(params.id)} />
         </div>
