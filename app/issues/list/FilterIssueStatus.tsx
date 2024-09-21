@@ -15,7 +15,7 @@ function FilterIssueStatus() {
 
   function handleChange(status: string) {
     const query = status ? "?status=" + status : "";
-    router.push("/issues/" + query);
+    router.push("/issues/list" + query);
   }
 
   return (

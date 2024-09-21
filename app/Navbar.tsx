@@ -10,7 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const links = [
     { label: "Dashboard", href: "/dashboard" },
-    { label: "Issues", href: "/issues" },
+    { label: "Issues", href: "/issues/list" },
   ];
   return (
     <nav className="navbar border-b bg-base-100">
