@@ -8,7 +8,7 @@ interface Props {
 const statusMap: Record<Status, { label: string; color: string }> = {
   OPEN: { label: "Open", color: "text-red-600 bg-red-100" },
   IN_PROGRESS: { label: "In Progress", color: "text-blue-600 bg-blue-50" },
-  CLOSE: { label: "Close", color: "text-green-600 bg-green-50" },
+  CLOSED: { label: "Closed", color: "text-green-600 bg-green-50" },
 };
 
 function IssuesBadge({ status }: Props): ReactElement {

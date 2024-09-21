@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 const statuses: { label: string; value?: Status }[] = [
   { label: "All" },
   { label: "Open", value: "OPEN" },
-  { label: "Closed", value: "CLOSE" },
+  { label: "Closed", value: "CLOSED" },
   { label: "In Progress", value: "IN_PROGRESS" },
 ];
 
