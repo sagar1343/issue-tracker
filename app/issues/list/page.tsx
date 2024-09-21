@@ -2,6 +2,7 @@ import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import IssuesAction from "./IssuesAction";
 import IssueTable, { columns, IssueQuery } from "./IssueTable";
+import Pagination from "./Pagination";
 
 interface Props {
   searchParams: IssueQuery;
@@ -25,9 +26,16 @@ async function IssuesPage({ searchParams }: Props) {
   });
 
   return (
-    <div className="space-y-8">
+    <div className="flex flex-col space-y-8">
       <IssuesAction />
       <IssueTable issues={issues} searchParams={searchParams} />
+      <div className="self-end">
+        <Pagination
+          itemCount={issues.length}
+          pageSize={10}
+          currentPage={parseInt(searchParams.page || "1")}
+        />
+      </div>
     </div>
   );
 }

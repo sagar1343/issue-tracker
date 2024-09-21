@@ -6,6 +6,7 @@ import IssuesBadge from "../../components/IssuesBadge";
 export interface IssueQuery {
   status: Status;
   orderBy: keyof Issue;
+  page: string;
 }
 
 interface Props {
