@@ -1,10 +1,22 @@
 import prisma from "@/prisma/client";
+import { Status } from "@prisma/client";
 import Link from "next/link";
 import IssuesBadge from "../components/IssuesBadge";
 import IssuesAction from "./IssuesAction";
 
-async function IssuesPage() {
-  const issues = await prisma.issue.findMany();
+interface Props {
+  searchParams: { status: Status };
+}
+async function IssuesPage({ searchParams }: Props) {
+  const statuses = Object.values(Status);
+  const status = statuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
+  const issues = await prisma.issue.findMany({
+    where: { status: status },
+  });
+
   return (
     <div className="space-y-8">
       <IssuesAction />
