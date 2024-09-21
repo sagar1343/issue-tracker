@@ -1,6 +1,6 @@
-import { FaSort } from "react-icons/fa";
 import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
+import { FaSort } from "react-icons/fa";
 import IssuesBadge from "../../components/IssuesBadge";
 
 export interface IssueQuery {
@@ -13,16 +13,6 @@ interface Props {
   issues: Issue[];
   searchParams: IssueQuery;
 }
-
-export const columns: {
-  label: string;
-  value: keyof Issue;
-  className?: string;
-}[] = [
-  { label: "Issue", value: "title" },
-  { label: "Status", value: "status" },
-  { label: "Created", value: "createdAt", className: "hidden md:block" },
-];
 
 function IssueTable({ issues, searchParams }: Props) {
   return (
@@ -66,3 +56,15 @@ function IssueTable({ issues, searchParams }: Props) {
 }
 
 export default IssueTable;
+
+const columns: {
+  label: string;
+  value: keyof Issue;
+  className?: string;
+}[] = [
+  { label: "Issue", value: "title" },
+  { label: "Status", value: "status" },
+  { label: "Created", value: "createdAt", className: "hidden md:block" },
+];
+
+export const columnNames = columns.map((column) => column.value);

@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import IssuesAction from "./IssuesAction";
-import IssueTable, { columns, IssueQuery } from "./IssueTable";
+import IssueTable, { columnNames, IssueQuery } from "./IssueTable";
 import Pagination from "./Pagination";
 
 interface Props {
@@ -14,9 +14,7 @@ async function IssuesPage({ searchParams }: Props) {
     ? searchParams.status
     : undefined;
 
-  const orderBy = columns
-    .map((column) => column.value)
-    .includes(searchParams.orderBy)
+  const orderBy = columnNames.includes(searchParams.orderBy)
     ? { [searchParams.orderBy]: "asc" }
     : undefined;
 
@@ -37,7 +35,11 @@ async function IssuesPage({ searchParams }: Props) {
       <IssuesAction />
       <IssueTable issues={issues} searchParams={searchParams} />
       <div className="self-end">
-        <Pagination itemCount={issueCount} pageSize={10} currentPage={page} />
+        <Pagination
+          itemCount={issueCount}
+          pageSize={pageSize}
+          currentPage={page}
+        />
       </div>
     </div>
   );
