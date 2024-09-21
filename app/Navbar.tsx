@@ -9,7 +9,7 @@ import { FaBug } from "react-icons/fa";
 export default function Navbar() {
   const pathname = usePathname();
   const links = [
-    { label: "Dashboard", href: "/dashboard" },
+    { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues/list" },
   ];
   return (

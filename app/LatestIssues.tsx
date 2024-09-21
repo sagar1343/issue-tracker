@@ -13,11 +13,16 @@ async function LatestIssues() {
   });
 
   return (
-    <div className="card card-compact card-bordered max-w-sm">
+    <div className="card card-compact card-bordered">
       <div className="card-body">
         <div className="card-title">Latest Issues</div>
-        {latestIssues.map((issue) => (
-          <div key={issue.id} className="flex items-center justify-between">
+        {latestIssues.map((issue, index) => (
+          <div
+            key={issue.id}
+            className={`flex justify-between ${
+              index === 0 ? "" : "border-t"
+            } py-2`}
+          >
             <div className="flex flex-col items-start gap-1">
               <Link href={`/issues/${issue.id}`}>{issue.title}</Link>
               <IssuesBadge status={issue.status} />

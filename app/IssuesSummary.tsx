@@ -14,7 +14,7 @@ function IssuesSummary({ open, close, inProgress }: Props) {
     { label: "In Progress Issues", count: inProgress, status: "IN_PROGRESS" },
   ];
   return (
-    <ul className="flex gap-4 text-sm">
+    <ul className="flex gap-4 text-xs">
       {containers.map((container) => (
         <li
           key={container.label}
