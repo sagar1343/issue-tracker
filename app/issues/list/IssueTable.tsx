@@ -1,15 +1,43 @@
-import { Issue } from "@prisma/client";
+import { FaSort } from "react-icons/fa";
+import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
 import IssuesBadge from "../../components/IssuesBadge";
 
-function IssueTable({ issues }: { issues: Issue[] }) {
+export interface IssueQuery {
+  status: Status;
+  orderBy: keyof Issue;
+}
+
+interface Props {
+  issues: Issue[];
+  searchParams: IssueQuery;
+}
+
+export const columns: {
+  label: string;
+  value: keyof Issue;
+  className?: string;
+}[] = [
+  { label: "Issue", value: "title" },
+  { label: "Status", value: "status" },
+  { label: "Created", value: "createdAt", className: "hidden md:block" },
+];
+
+function IssueTable({ issues, searchParams }: Props) {
   return (
     <table className="table table-md border">
       <thead>
         <tr>
-          <th>Issue</th>
-          <th>Status</th>
-          <th className="hidden md:block">Created At</th>
+          {columns.map((column) => (
+            <th key={column.value} className={column.className}>
+              <Link
+                href={{ query: { ...searchParams, orderBy: column.value } }}
+              >
+                {column.label}
+                <FaSort className="inline" />
+              </Link>
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
