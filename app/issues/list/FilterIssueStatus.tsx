@@ -1,7 +1,7 @@
 "use client";
 
 import { Status } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const statuses: { label: string; value?: Status }[] = [
   { label: "All" },
@@ -12,9 +12,14 @@ const statuses: { label: string; value?: Status }[] = [
 
 function FilterIssueStatus() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  function handleChange(status: string) {
-    const query = status ? "?status=" + status : "";
+  function handleChange(status: string): void {
+    const params = new URLSearchParams();
+    if (status) params.append("status", status);
+    if (searchParams.get("orderBy"))
+      params.append("orderBy", searchParams.get("orderBy")!);
+    const query = params.size ? "?" + params.toString() : "";
     router.push("/issues/list" + query);
   }
 
@@ -22,6 +27,7 @@ function FilterIssueStatus() {
     <select
       onChange={(event) => handleChange(event.target.value)}
       className="select text-zinc-500 select-bordered focus:outline-none rounded-md"
+      defaultValue={searchParams.get("status") || ""}
     >
       {statuses.map((status) => (
         <option key={status.label} value={status.value || ""}>
