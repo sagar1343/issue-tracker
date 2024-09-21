@@ -20,21 +20,24 @@ async function IssuesPage({ searchParams }: Props) {
     ? { [searchParams.orderBy]: "asc" }
     : undefined;
 
+  const page = parseInt(searchParams.page) || 1;
+  const pageSize = 10;
+
   const issues = await prisma.issue.findMany({
     where: { status },
     orderBy,
+    skip: (page - 1) * pageSize,
+    take: pageSize,
   });
+
+  const issueCount = await prisma.issue.count({ where: { status } });
 
   return (
     <div className="flex flex-col space-y-8">
       <IssuesAction />
       <IssueTable issues={issues} searchParams={searchParams} />
       <div className="self-end">
-        <Pagination
-          itemCount={issues.length}
-          pageSize={10}
-          currentPage={parseInt(searchParams.page || "1")}
-        />
+        <Pagination itemCount={issueCount} pageSize={10} currentPage={page} />
       </div>
     </div>
   );
