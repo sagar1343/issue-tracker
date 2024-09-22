@@ -15,7 +15,10 @@ function IssuesBadge({ status }: Props): ReactElement {
   const { label, color } = statusMap[status];
   return (
     <div
-      className={"inline px-3 py-1 rounded-full font-semibold text-xs " + color}
+      className={
+        "inline whitespace-nowrap px-3 py-1 rounded-full font-semibold text-xs " +
+        color
+      }
     >
       {label}
     </div>

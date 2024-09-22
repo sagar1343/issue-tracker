@@ -26,7 +26,7 @@ function FilterIssueStatus() {
   return (
     <select
       onChange={(event) => handleChange(event.target.value)}
-      className="select text-zinc-500 select-bordered focus:outline-none rounded-md"
+      className="select min-h-4 h-auto text-zinc-500 select-bordered focus:outline-none rounded-md"
       defaultValue={searchParams.get("status") || ""}
     >
       {statuses.map((status) => (

@@ -47,7 +47,7 @@ function Pagination({ itemCount: issueCount, pageSize, currentPage }: Props) {
       >
         <FiChevronLeft />
       </button>
-      <button className="join-item border-t border-b cursor-not-allowed px-4 rounded-md h-12 text-indigo-500">
+      <button className="join-item text-xs border-t border-b cursor-not-allowed px-4 rounded-md h-12 text-indigo-500">
         Page {currentPage} of {pageCount}
       </button>
       <button

@@ -35,7 +35,7 @@ async function IssuesPage({ searchParams }: Props) {
     <div className="flex flex-col space-y-8">
       <IssuesAction />
       <IssueTable issues={issues} searchParams={searchParams} />
-      <div className="self-end">
+      <div className="self-center md:self-end">
         <Pagination
           itemCount={issueCount}
           pageSize={pageSize}
