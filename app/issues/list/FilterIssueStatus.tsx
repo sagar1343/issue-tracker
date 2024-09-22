@@ -17,8 +17,10 @@ function FilterIssueStatus() {
   function handleChange(status: string): void {
     const params = new URLSearchParams();
     if (status) params.append("status", status);
-    if (searchParams.get("orderBy"))
+    if (searchParams.get("orderBy")) {
       params.append("orderBy", searchParams.get("orderBy")!);
+      params.append("order", searchParams.get("order")!);
+    }
     const query = params.size ? "?" + params.toString() : "";
     router.push("/issues/list" + query);
   }

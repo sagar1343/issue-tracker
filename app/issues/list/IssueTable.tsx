@@ -1,11 +1,17 @@
 import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
-import { FaSort } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp, FaCaretDown, FaCaretUp } from "react-icons/fa";
 import IssuesBadge from "../../components/IssuesBadge";
+
+enum Order {
+  Ascending = "asc",
+  Descending = "desc",
+}
 
 export interface IssueQuery {
   status: Status;
   orderBy: keyof Issue;
+  order: Order;
   page: string;
 }
 
@@ -21,12 +27,33 @@ function IssueTable({ issues, searchParams }: Props) {
         <tr>
           {columns.map((column) => (
             <th key={column.value} className={column.className}>
-              <Link
-                href={{ query: { ...searchParams, orderBy: column.value } }}
-              >
+              <div className="flex items-center gap-1">
                 {column.label}
-                <FaSort className="inline" />
-              </Link>
+                <div className="flex flex-col -gap-2=">
+                  <Link
+                    href={{
+                      query: {
+                        ...searchParams,
+                        orderBy: column.value,
+                        order: Order.Ascending,
+                      },
+                    }}
+                  >
+                    <FaAngleUp />
+                  </Link>
+                  <Link
+                    href={{
+                      query: {
+                        ...searchParams,
+                        orderBy: column.value,
+                        order: Order.Descending,
+                      },
+                    }}
+                  >
+                    <FaAngleDown />
+                  </Link>
+                </div>
+              </div>
             </th>
           ))}
         </tr>
