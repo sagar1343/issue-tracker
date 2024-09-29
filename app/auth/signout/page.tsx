@@ -2,9 +2,8 @@
 
 import { signOut } from "next-auth/react";
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import bugBanner from "../../../public/BugBanner.jpg";
 import Link from "next/link";
+import bugBanner from "../../../public/BugBanner.jpg";
 
 const SignOutPage = () => {
   return (
