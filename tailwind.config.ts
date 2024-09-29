@@ -12,6 +12,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        custom: "calc(100vh - 133px)"
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
