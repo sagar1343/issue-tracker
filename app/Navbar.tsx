@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 import { FaBug } from "react-icons/fa";
 
 export default function Navbar() {
@@ -50,10 +51,7 @@ function AuthStatus() {
     <>
       {status == "loading" && <span className="skeleton h-4 w-12" />}
       {status === "unauthenticated" && (
-        <Link
-          className="font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer"
-          href="/api/auth/signin"
-        >
+        <Link className="font-medium link-primary" href="/api/auth/signin">
           Login
         </Link>
       )}
@@ -88,7 +86,7 @@ function AuthStatus() {
             </li>
             <li>
               <Link
-                className="hover:bg-indigo-600 hover:text-white"
+                className="hover:bg-primary hover:text-white"
                 href="/api/auth/signout"
               >
                 Logout

@@ -31,7 +31,7 @@ function IssueTable({ issues, searchParams }: Props) {
                 {column.label}
                 <div className="flex flex-col">
                   <Link
-                    className="hover:text-indigo-600 hover:scale-125"
+                    className="hover:text-primary hover:scale-125"
                     href={{
                       query: {
                         ...searchParams,
@@ -43,7 +43,7 @@ function IssueTable({ issues, searchParams }: Props) {
                     <FaAngleUp />
                   </Link>
                   <Link
-                    className="-mt-1 hover:text-indigo-600 hover:scale-125 transition ease-in-out"
+                    className="-mt-1 hover:text-primary hover:scale-125 transition ease-in-out"
                     href={{
                       query: {
                         ...searchParams,
@@ -64,10 +64,7 @@ function IssueTable({ issues, searchParams }: Props) {
         {issues.map((issue) => (
           <tr key={issue.id} className="hover">
             <td>
-              <Link
-                href={`/issues/${issue.id}`}
-                className="link text-indigo-600 "
-              >
+              <Link href={`/issues/${issue.id}`} className="link text-primary ">
                 {issue.title}
               </Link>
             </td>

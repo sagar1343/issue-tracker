@@ -22,7 +22,7 @@ function IssuesChart({ open, close, inProgress }: Props) {
         <BarChart data={data}>
           <XAxis dataKey="label" />
           <YAxis />
-          <Bar dataKey="value" barSize={60} fill="#5046E4" />
+          <Bar dataKey="value" barSize={60} fill="#4D6EFF" />
         </BarChart>
       </ResponsiveContainer>
     </div>

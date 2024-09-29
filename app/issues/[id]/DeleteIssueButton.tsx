@@ -3,6 +3,7 @@
 import Button from "@/app/components/Button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { useRef, useState } from "react";
 import { MdDelete } from "react-icons/md";
 
@@ -65,7 +66,7 @@ function DeleteIssueButton({ issueId }: { issueId: number }) {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              className="text-indigo-500 h-6 w-6 shrink-0"
+              className="text-primary h-6 w-6 shrink-0"
             >
               <path
                 strokeLinecap="round"

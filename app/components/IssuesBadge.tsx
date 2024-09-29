@@ -6,22 +6,15 @@ interface Props {
 }
 
 const statusMap: Record<Status, { label: string; color: string }> = {
-  OPEN: { label: "Open", color: "text-red-600 bg-red-100" },
-  IN_PROGRESS: { label: "In Progress", color: "text-blue-600 bg-blue-50" },
-  CLOSED: { label: "Closed", color: "text-green-600 bg-green-50" },
+  OPEN: { label: "Open", color: "badge badge-error" },
+  IN_PROGRESS: { label: "In Progress", color: "badge badge-primary" },
+  CLOSED: { label: "Closed", color: "badge badge-accent" },
 };
 
 function IssuesBadge({ status }: Props): ReactElement {
   const { label, color } = statusMap[status];
   return (
-    <div
-      className={
-        "inline whitespace-nowrap px-3 py-1 rounded-full font-semibold text-xs " +
-        color
-      }
-    >
-      {label}
-    </div>
+    <div className={"whitespace-nowrap rounded-full " + color}>{label}</div>
   );
 }
 
