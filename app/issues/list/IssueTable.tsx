@@ -1,6 +1,6 @@
 import { Issue, Status } from "@prisma/client";
 import Link from "next/link";
-import { FaAngleDown, FaAngleUp, FaCaretDown, FaCaretUp } from "react-icons/fa";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import IssuesBadge from "../../components/IssuesBadge";
 
 enum Order {
@@ -29,8 +29,9 @@ function IssueTable({ issues, searchParams }: Props) {
             <th key={column.value} className={column.className}>
               <div className="flex items-center gap-1">
                 {column.label}
-                <div className="flex flex-col -gap-2=">
+                <div className="flex flex-col">
                   <Link
+                    className="hover:text-indigo-600 hover:scale-125"
                     href={{
                       query: {
                         ...searchParams,
@@ -42,6 +43,7 @@ function IssueTable({ issues, searchParams }: Props) {
                     <FaAngleUp />
                   </Link>
                   <Link
+                    className="-mt-1 hover:text-indigo-600 hover:scale-125 transition ease-in-out"
                     href={{
                       query: {
                         ...searchParams,
