@@ -13,7 +13,7 @@ export async function PATCH(request: NextRequest, { params }: Props) {
     if (!session) return NextResponse.json({}, { status: 401 })
 
     const body = await request.json()
-    const { title, description, assignedToUserId } = body
+    const { title, description, status, assignedToUserId } = body
     const validation = patchIssueSchema.safeParse(body)
     if (!validation.success)
         return NextResponse.json(validation.error.format(), { status: 400 })
@@ -22,7 +22,7 @@ export async function PATCH(request: NextRequest, { params }: Props) {
         return NextResponse.json({ error: "Issue not found" }, { status: 404 })
     const updatedIssue = await prisma.issue.update({
         where: { id: parseInt(params.id) },
-        data: { title, description, assignedToUserId }
+        data: { title, description, status, assignedToUserId }
     })
     return NextResponse.json(updatedIssue, { status: 200 })
 }
